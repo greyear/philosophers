@@ -34,25 +34,43 @@ int	ft_isdigit(int c)
 	return (0);
 }
 
-int	ft_atoi(const char *str, int *number)
+static int	ft_empty_space(char *str)
 {
-	long	sign;
+	int		i;
+
+	if (!str || str[0] == '\0')
+		return (1);
+	i = 0;
+	while (ft_isspace(str[i]))
+		i++;
+	if (str[i] == '\0')
+		return (1);
+	return (0);
+}
+
+int	ft_atoi(char *str, int *number)
+{
 	int		i;
 	long	res;
 
+	if (ft_empty_space(str))
+		return (1);
 	i = 0;
-	sign = 1;
 	while (ft_isspace(str[i]))
 		i++;
 	if (ft_isplus(str[i]))
 		i++;
+	if (!ft_isdigit(str[i]))
+		return (1);
 	res = 0;
 	while (ft_isdigit(str[i]))
 	{
 		res = res * 10 + (str[i++] - '0');
-		if (res * sign < (long)INT_MIN || res * sign > (long)INT_MAX)
+		if (res > (long)INT_MAX)
 			return (1);
 	}
-	*number = (int)sign * res;
+	if (str[i] != '\0')
+		return (1);
+	*number = (int)res;
 	return (0);
 }
