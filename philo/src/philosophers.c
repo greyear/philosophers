@@ -6,8 +6,14 @@
 /*   By: azinchen <azinchen@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 18:46:36 by azinchen          #+#    #+#             */
-/*   Updated: 2024/12/23 18:46:53 by azinchen         ###   ########.fr       */
+/*   Updated: 2024/12/23 19:03:29 by azinchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../include/philosophers.h"
 
+int	main(int argc, char **argv)
+{
+	
+	return (0);
+}

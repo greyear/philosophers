@@ -6,12 +6,14 @@
 /*   By: azinchen <azinchen@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 18:46:48 by azinchen          #+#    #+#             */
-/*   Updated: 2024/12/23 18:53:14 by azinchen         ###   ########.fr       */
+/*   Updated: 2024/12/23 19:33:07 by azinchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILOSOPHERS_H
 # define PHILOSOPHERS_H
+
+# include <limits.h>
 
 typedef struct s_args
 {
