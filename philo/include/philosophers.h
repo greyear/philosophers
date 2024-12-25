@@ -47,7 +47,7 @@ pthread_detach detaches (turns off) a thread so that it can release resources au
 returns: 0 on success, error code on failure
 
 int pthread_join(pthread_t thread, void **retval);
-pthread_join - to wait for a thread to terminate and extract its exit status
+pthread_join - to wait for a thread to terminate (join it to the main) and extract its exit status
 thread: thread to join (wait for).
 retval: pointer to a variable where the exit status of the thread will be stored
 returns: 0 on success, error code on failure

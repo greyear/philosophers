@@ -20,7 +20,7 @@ INC_DIR			=	./include
 
 # Compiler and compilation flags
 CC				=	cc
-CFLAGS			=	-g -Wall -Wextra -Werror
+CFLAGS			=	-g -pthread -Wall -Wextra -Werror
 RM				=	rm -f
 
 # Source files
