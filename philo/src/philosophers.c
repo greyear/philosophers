@@ -10,15 +10,16 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include "../include/philosophers.h"
+#include "../include/philosophers.h"
 
 #include <pthread.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h> //Header file for sleep(). man 3 sleep for details.
+#include <unistd.h>
 
-int	mails = 0;
+/*int	mails = 0;
 pthread_mutex_t	mutex;
+
 
 void	*routine()
 {
@@ -47,7 +48,7 @@ int	main(int argc, char	*argv[])
 	pthread_mutex_destroy(&mutex);
 	printf("Number of mails: %d\n", mails);
 	return (0);
-}
+}*/
 
 
 /*
@@ -120,14 +121,19 @@ int main(void)
 void	*routine(char *str)
 {
 
-}
-
+}*/
 
 int	main(int argc, char **argv)
 {
+	t_args	args;
+
+	if (argc < 5 || argc > 6)
+		return (error_msg(1));
+	if (validation(argc, argv, &args))
+		return (1);
 	
 	return (0);
-}*/
+}
 
 /*
 each philosopher is a thread

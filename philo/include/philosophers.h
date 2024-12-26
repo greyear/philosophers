@@ -76,12 +76,39 @@ returns: 0 on success, error code on failure
 
 typedef struct s_args
 {
-	int	argc;
 	int	num_of_philos;
 	int	time_to_die;
 	int	time_to_eat;
 	int	time_to_sleep;
-	int	num_must_eat;
+	int	meals_must_eat;
 }	t_args;
+
+typedef struct s_res
+{
+	pthread_mutex_t	mut_print;
+
+}	t_res;
+
+typedef struct s_philo
+{
+	int				id;
+	pthread_t		thread;
+	int				meals_eaten;
+	size_t			last_meal_time;
+	pthread_mutex_t	*fork_l;
+	pthread_mutex_t	*fork_r;
+	t_args			*args;
+}	t_philo;
+
+//Main
+
+//Validation
+int	validation(int argc, char **argv, t_args *args);
+int	ft_atoi(char *str, int *number);
+
+//Errors
+int error_msg(int code);
+
+//Cleaners
 
 #endif
