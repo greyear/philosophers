@@ -128,7 +128,7 @@ int	main(int argc, char **argv)
 	t_args	args;
 
 	if (argc < 5 || argc > 6)
-		return (error_msg(1));
+		return (error_msg(ARGS_NUM));
 	if (validation(argc, argv, &args))
 		return (1);
 	

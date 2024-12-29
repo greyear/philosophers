@@ -25,6 +25,9 @@ RM				=	rm -f
 
 # Source files
 SRC				=	philosophers.c \
+					initialization.c \
+					thread_mutex.c \
+					printing.c \
 					utils.c \
 					args_validation.c \
 					atoi_libft.c \

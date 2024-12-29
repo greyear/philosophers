@@ -13,15 +13,14 @@
 #ifndef PHILOSOPHERS_H
 # define PHILOSOPHERS_H
 
+# include "constants.h"
 # include <limits.h>
-# include <string.h> (memset)
-# include <stdio.h> (printf)
-# include <stdlib.h> (malloc, free)
-# include <unistd.h> (write, usleep)
-# include <sys/time.h> (gettimeofday)
-# include <pthread.h> (pthread_create, pthread_detach, pthread_join, pthread_mutex_init)
-
-
+# include <string.h> //(memset)
+# include <stdio.h> //(printf)
+# include <stdlib.h> //(malloc, free)
+# include <unistd.h> //(write, usleep)
+# include <sys/time.h> //(gettimeofday)
+# include <pthread.h> //(pthread_create, pthread_detach, pthread_join, pthread_mutex_init)
 
 /*
 int usleep(useconds_t usec);
@@ -76,7 +75,7 @@ returns: 0 on success, error code on failure
 
 typedef struct s_args
 {
-	int	num_of_philos;
+	int	num;
 	int	time_to_die;
 	int	time_to_eat;
 	int	time_to_sleep;
@@ -85,8 +84,12 @@ typedef struct s_args
 
 typedef struct s_res
 {
-	pthread_mutex_t	mut_print;
-
+	t_philo			*philos; //maybe **
+	pthread_mutex_t	*forks;
+	pthread_mutex_t	print;
+	pthread_t		monitor;
+	struct timeval	tv;
+	t_args			*args;
 }	t_res;
 
 typedef struct s_philo
@@ -101,6 +104,9 @@ typedef struct s_philo
 }	t_philo;
 
 //Main
+int thread_action(pthread_t *thread, void *(*routine)(void *),
+	void *routine_arg, t_thread action);
+int mutex_action(pthread_mutex_t *mutex, t_mtx action);
 
 //Validation
 int	validation(int argc, char **argv, t_args *args);

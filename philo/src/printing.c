@@ -17,7 +17,7 @@ size_t get_time_millisec(void) //long?
 	struct timeval tv;
 
 	if (gettimeofday(&tv, NULL) == -1)
-		return (-1);
+		return (-1); //protect after calling
 	return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
 	//sec -> millisec			  microces->millisec
 }
