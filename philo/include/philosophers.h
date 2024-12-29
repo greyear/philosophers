@@ -75,11 +75,11 @@ returns: 0 on success, error code on failure
 
 typedef struct s_args
 {
-	int	num;
-	int	time_to_die;
-	int	time_to_eat;
-	int	time_to_sleep;
-	int	meals_must_eat;
+	int				num;
+	int				time_to_die;
+	int				time_to_eat;
+	int				time_to_sleep;
+	int				meals_must_eat;
 }	t_args;
 
 typedef struct s_res
@@ -104,17 +104,22 @@ typedef struct s_philo
 }	t_philo;
 
 //Main
-int thread_action(pthread_t *thread, void *(*routine)(void *),
-	void *routine_arg, t_thread action);
-int mutex_action(pthread_mutex_t *mutex, t_mtx action);
+int		create_threads(t_res *res);
+int		join_threads(t_res *res);
+int		thread_action(pthread_t *thread, void *(*routine)(void *),
+			void *routine_arg, t_thread action);
+int		mutex_action(pthread_mutex_t *mutex, t_mtx action);
+size_t	get_time(t_res *res);
+void	print_msg(t_res *res, t_oper oper);
 
 //Validation
-int	validation(int argc, char **argv, t_args *args);
-int	ft_atoi(char *str, int *number);
+int		validation(int argc, char **argv, t_args *args);
+int		ft_atoi(char *str, int *number);
 
 //Errors
-int error_msg(int code);
+int		error_msg(int code);
 
 //Cleaners
+int		clean_resourses(t_res **res);
 
 #endif

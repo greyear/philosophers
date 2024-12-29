@@ -15,7 +15,7 @@ static int	allocate_fields(t_res *res)
 	return (0);
 }
 
-static int	mutex_fields(t_res *res)
+static int	init_mutex_fields(t_res *res)
 {
 	int	i;
 
@@ -63,7 +63,7 @@ int	init_resourses(t_res *res)
 {
 	if (allocate_fields(res) != 0)
 		return (1);
-	if (mutex_fields(res) != 0)
+	if (init_mutex_fields(res) != 0)
 		return (1);
 	//others
 	init_philo(res);

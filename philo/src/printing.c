@@ -12,15 +12,28 @@
 
 #include "../include/philosophers.h"
 
-size_t get_time_millisec(void) //long?
+size_t	get_time(t_res *res) //long? //tv inside the philo?
 {
-	struct timeval tv;
-
-	if (gettimeofday(&tv, NULL) == -1)
+	//struct timeval tv;
+	if (gettimeofday(&(res->tv), NULL) == -1)
 		return (-1); //protect after calling
-	return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
-	//sec -> millisec			  microces->millisec
+	return ((res->tv.tv_sec * 1000) + (res->tv.tv_usec / 1000));
+	//sec -> millisec					microces->millisec
 }
 
-
+void	print_msg(t_res *res, t_oper oper) //pointer to oper?
+{
+	//mutex
+	if (oper == THINK) //other conditions
+		printf("%zu %d is thinking\n", get_time(res), res->philos->id);
+	else if (oper == EAT) //other conditions
+	{
+		//forks?
+		printf("%zu %d is eating\n", get_time(res), res->philos->id);
+	}
+		
+	else if (oper == SLEEP) //other conditions
+		printf("%zu %d is sleeping\n", get_time(res), res->philos->id);
+	//mutex
+}
 

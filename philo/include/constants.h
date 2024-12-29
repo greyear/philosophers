@@ -2,6 +2,13 @@
 #ifndef CONSTANTS_H
 # define CONSTANTS_H
 
+typedef enum e_oper
+{
+	THINK,
+	EAT,
+	SLEEP
+}	t_oper;
+
 typedef enum e_err
 {
 	ARGS_NUM,

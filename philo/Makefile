@@ -26,7 +26,9 @@ RM				=	rm -f
 # Source files
 SRC				=	philosophers.c \
 					initialization.c \
-					thread_mutex.c \
+					routine.c \
+					threads.c \
+					actions.c \
 					printing.c \
 					utils.c \
 					args_validation.c \

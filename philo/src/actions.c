@@ -13,7 +13,7 @@ int thread_action(pthread_t *thread, void *(*routine)(void *),
 	}
 	if (action == JOIN)
 	{
-		if (pthread_join(*thread, NULL) != 0)
+		if (pthread_join(*thread, NULL) != 0) //extra args(
 			return (error_msg(THRD_JN));
 	}
 	return (0);
