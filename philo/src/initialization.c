@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   initialization.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: azinchen <azinchen@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/30 14:55:10 by azinchen          #+#    #+#             */
+/*   Updated: 2024/12/30 14:55:12 by azinchen         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../include/philosophers.h"
 
@@ -66,6 +77,7 @@ int	init_resourses(t_res *res)
 	if (init_mutex_fields(res) != 0)
 		return (1);
 	//others
+	res->start = get_time(); //not here?
 	init_philo(res);
 	return (0);
 }

@@ -1,6 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   actions.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: azinchen <azinchen@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/30 14:54:43 by azinchen          #+#    #+#             */
+/*   Updated: 2024/12/30 14:54:48 by azinchen         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../include/philosophers.h"
-
 
 int thread_action(pthread_t *thread, void *(*routine)(void *),
 	void *routine_arg, t_thread action)

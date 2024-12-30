@@ -90,6 +90,7 @@ typedef struct s_res
 	pthread_t		monitor;
 	struct timeval	tv;
 	t_args			*args;
+	size_t			start;
 }	t_res;
 
 typedef struct s_philo
@@ -109,8 +110,8 @@ int		join_threads(t_res *res);
 int		thread_action(pthread_t *thread, void *(*routine)(void *),
 			void *routine_arg, t_thread action);
 int		mutex_action(pthread_mutex_t *mutex, t_mtx action);
-size_t	get_time(t_res *res);
-void	print_msg(t_res *res, t_oper oper);
+size_t	get_time(void);
+void	message(t_res *res, t_oper oper);
 
 //Validation
 int		validation(int argc, char **argv, t_args *args);
