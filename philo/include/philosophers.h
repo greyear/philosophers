@@ -82,17 +82,6 @@ typedef struct s_args
 	int				meals_must_eat;
 }	t_args;
 
-typedef struct s_res
-{
-	t_philo			*philos; //maybe **
-	pthread_mutex_t	*forks;
-	pthread_mutex_t	print;
-	pthread_t		monitor;
-	struct timeval	tv;
-	t_args			*args;
-	size_t			start;
-}	t_res;
-
 typedef struct s_philo
 {
 	int				id;
@@ -104,12 +93,24 @@ typedef struct s_philo
 	t_args			*args;
 }	t_philo;
 
+typedef struct s_res
+{
+	t_philo			*philos; //maybe **
+	pthread_mutex_t	*forks;
+	pthread_mutex_t	print;
+	pthread_t		monitor;
+	struct timeval	tv;
+	t_args			*args;
+	size_t			start;
+}	t_res;
+
 //Main
 int		create_threads(t_res *res);
 int		join_threads(t_res *res);
 int		thread_action(pthread_t *thread, void *(*routine)(void *),
 			void *routine_arg, t_thread action);
 int		mutex_action(pthread_mutex_t *mutex, t_mtx action);
+void	*routine(void	*arg);
 size_t	get_time(void);
 void	message(t_res *res, t_oper oper);
 

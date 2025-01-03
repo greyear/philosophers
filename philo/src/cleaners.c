@@ -43,7 +43,7 @@ int	clean_resourses(t_res **res)
 {
 	if (destroy_mutex_fields(*res) != 0)
 		return (1); //?
-	free_fields(res);
+	free_fields(*res);
 	free(*res);
 	*res = NULL;
 	return (0);

@@ -18,4 +18,8 @@ void	*routine(void	*arg)
 
 	philo = (t_philo *)arg;
 	
+	sleep(1);
+	printf("Printing GeeksQuiz from Thread \n");
+	return NULL;
+
 }

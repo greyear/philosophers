@@ -30,11 +30,12 @@ SRC				=	philosophers.c \
 					threads.c \
 					actions.c \
 					printing.c \
-					utils.c \
 					args_validation.c \
 					atoi_libft.c \
 					errors.c \
 					cleaners.c \
+
+SRC				:=	$(addprefix $(SRC_DIR)/, $(SRC))
 
 # Object files
 OBJ				=	$(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
