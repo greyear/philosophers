@@ -19,7 +19,8 @@ static void free_fields(t_res *res)
 		free(res->philos);
 	if (res->forks)
 		free(res->forks);
-	//args?
+	if (res->args)
+		free(res->args);
 }
 
 static int	destroy_mutex_fields(t_res *res)
@@ -41,8 +42,9 @@ static int	destroy_mutex_fields(t_res *res)
 
 int	clean_resourses(t_res **res)
 {
+	//как проверить, есть ли они уже или нет?
 	if (destroy_mutex_fields(*res) != 0)
-		return (1); //?
+		return (1); //other cleaning?
 	free_fields(*res);
 	free(*res);
 	*res = NULL;

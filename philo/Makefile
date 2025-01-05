@@ -31,7 +31,8 @@ SRC				=	philosophers.c \
 					actions.c \
 					printing.c \
 					args_validation.c \
-					atoi_libft.c \
+					atoi.c \
+					utils.c \
 					errors.c \
 					cleaners.c \
 

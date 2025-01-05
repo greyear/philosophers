@@ -73,6 +73,8 @@ mutex: The mutex to unlock.
 returns: 0 on success, error code on failure
 */
 
+typedef struct s_res	t_res;
+
 typedef struct s_args
 {
 	int				num;
@@ -91,6 +93,7 @@ typedef struct s_philo
 	pthread_mutex_t	*fork_l;
 	pthread_mutex_t	*fork_r;
 	t_args			*args;
+	t_res			*res;
 }	t_philo;
 
 typedef struct s_res
@@ -99,12 +102,13 @@ typedef struct s_res
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	print;
 	pthread_t		monitor;
-	struct timeval	tv;
+	//struct timeval	tv;
 	t_args			*args;
 	size_t			start;
 }	t_res;
 
 //Main
+int		init_resourses(t_res *res);
 int		create_threads(t_res *res);
 int		join_threads(t_res *res);
 int		thread_action(pthread_t *thread, void *(*routine)(void *),
@@ -112,10 +116,13 @@ int		thread_action(pthread_t *thread, void *(*routine)(void *),
 int		mutex_action(pthread_mutex_t *mutex, t_mtx action);
 void	*routine(void	*arg);
 size_t	get_time(void);
-void	message(t_res *res, t_oper oper);
+void	message(t_philo *philo, t_oper oper);
+
+//Utils
+void	*ft_calloc(size_t count, size_t size);
 
 //Validation
-int		validation(int argc, char **argv, t_args *args);
+int		validation(int argc, char **argv, t_res *res);
 int		ft_atoi(char *str, int *number);
 
 //Errors

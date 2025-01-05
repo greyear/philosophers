@@ -18,8 +18,11 @@ void	*routine(void	*arg)
 
 	philo = (t_philo *)arg;
 	
-	sleep(1);
-	printf("Printing GeeksQuiz from Thread \n");
+	/*if (philo) //delete
+		sleep(1);*/
+	//printf("Printing from thread %d \n", philo->id);
+	message(philo, SLEEP);
+
 	return NULL;
 
 }

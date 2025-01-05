@@ -117,21 +117,36 @@ int main(void)
 }
 */
 
-/*
-void	*routine(char *str)
-{
-
-}*/
 
 int	main(int argc, char **argv)
 {
-	t_args	args;
+	t_res	*res;
 
 	if (argc < 5 || argc > 6)
 		return (error_msg(ARGS_NUM));
-	if (validation(argc, argv, &args))
+	res = (t_res *)ft_calloc(1, sizeof(t_res));
+	if (!res)
+		return (error_msg(MLLC));
+	if (validation(argc, argv, res))
+	{
+		clean_resourses(&res);
 		return (1);
-	
+	}
+	if (init_resourses(res))
+	{
+		clean_resourses(&res);
+		return (1);
+	}
+	if (create_threads(res))
+	{
+		clean_resourses(&res);
+		return (1);
+	}
+	if (join_threads(res))
+	{
+		clean_resourses(&res);
+		return (1);
+	}
 	return (0);
 }
 

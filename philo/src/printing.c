@@ -21,22 +21,22 @@ size_t	get_time(void) //long? //tv inside the philo?
 	//sec -> millisec			microces->millisec
 }
 
-void	message(t_res *res, t_oper oper) //pointer to oper?
+void	message(t_philo *philo, t_oper oper) //pointer to oper?
 {
 	size_t	timestamp;
 
-	mutex_action(&(res->print), LOCK);
-	timestamp = get_time() - res->start;
+	mutex_action(&(philo->res->print), LOCK);
+	timestamp = get_time() - philo->res->start;
 	if (oper == THINK) //other conditions
-		printf("%zu %d is thinking\n", timestamp, res->philos->id);
+		printf("%zu %d is thinking\n", timestamp, philo->id);
 	else if (oper == EAT) //other conditions
 	{
 		//forks?
-		printf("%zu %d is eating\n", timestamp, res->philos->id);
+		printf("%zu %d is eating\n", timestamp, philo->id);
 	}
 	else if (oper == SLEEP) //other conditions
-		printf("%zu %d is sleeping\n", timestamp, res->philos->id);
-	mutex_action(&(res->print), UNLOCK);
+		printf("%zu %d is sleeping\n", timestamp, philo->id);
+	mutex_action(&(philo->res->print), UNLOCK);
 }
 
 

@@ -14,12 +14,17 @@
 
 static int	allocate_fields(t_res *res)
 {
-	res->philos = malloc(res->args->num * sizeof(t_philo));
+	//malloc?
+	res->philos = ft_calloc(res->args->num, sizeof(t_philo));
 	if (!res->philos)
+	{
+		free(res->args);
 		return (error_msg(MLLC));
-	res->forks = malloc(res->args->num * sizeof(pthread_mutex_t));
+	}
+	res->forks = ft_calloc(res->args->num, sizeof(pthread_mutex_t));
 	if (!res->forks)
 	{
+		free(res->args);
 		free(res->philos);
 		return (error_msg(MLLC));
 	}
@@ -52,23 +57,13 @@ static void	init_philo(t_res *res)
 	{
 		res->philos[i].id = i + 1;
 		res->philos[i].meals_eaten = 0;
+		res->philos[i].last_meal_time = res->start; //?
 		res->philos[i].fork_l = &(res->forks[i]);
 		res->philos[i].fork_r = &(res->forks[(i + 1) % res->args->num]);
-		//add time of last meal
-		//add everything else
+		res->philos[i].res = res;
 		i++;
 	}
 }
-
-/*typedef struct s_res
-{
-	pthread_mutex_t	*forks;
-	t_philo			*philos; //maybe **
-	pthread_mutex_t	print;
-	pthread_t		monitor;
-	struct timeval	tv;
-	t_args			*args;
-}	t_res;*/
 
 int	init_resourses(t_res *res)
 {
