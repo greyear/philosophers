@@ -30,7 +30,9 @@ SRC				=	philosophers.c \
 					threads.c \
 					actions.c \
 					printing.c \
+					time.c \
 					args_validation.c \
+					checkers.c \
 					atoi.c \
 					utils.c \
 					errors.c \

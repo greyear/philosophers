@@ -6,7 +6,9 @@ typedef enum e_oper
 {
 	THINK,
 	EAT,
-	SLEEP
+	SLEEP,
+	FORKS,
+	DEATH
 }	t_oper;
 
 typedef enum e_err

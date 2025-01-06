@@ -116,6 +116,7 @@ int		thread_action(pthread_t *thread, void *(*routine)(void *),
 int		mutex_action(pthread_mutex_t *mutex, t_mtx action);
 void	*routine(void	*arg);
 size_t	get_time(void);
+int		wait_ms(size_t waiting_time);
 void	message(t_philo *philo, t_oper oper);
 
 //Utils
