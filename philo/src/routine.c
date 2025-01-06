@@ -21,7 +21,9 @@ void	*routine(void	*arg)
 	/*if (philo) //delete
 		sleep(1);*/
 	//printf("Printing from thread %d \n", philo->id);
+	message(philo, EAT);
 	message(philo, SLEEP);
+	message(philo, THINK);
 
 	return NULL;
 
