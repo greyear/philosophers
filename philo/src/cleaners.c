@@ -25,7 +25,7 @@ static void free_fields(t_res *res)
 
 static int	destroy_mutex_fields(t_res *res)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
 	while (i < res->args->num)

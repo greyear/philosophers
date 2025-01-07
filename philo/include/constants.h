@@ -8,7 +8,8 @@ typedef enum e_oper
 	EAT,
 	SLEEP,
 	FORKS,
-	DEATH
+	DEATH,
+	FULL
 }	t_oper;
 
 typedef enum e_err

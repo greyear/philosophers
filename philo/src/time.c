@@ -21,6 +21,13 @@ int	wait_ms(size_t waiting_time) //what struct to put as an input?
 	{
 		usleep(400); //protect usleep? //how to choose value?
 		//add logic about other philos' death?
+		/*mutex_action(&(philo->res->print), LOCK);
+		if (philo->res->flag_finish == 1)
+		{
+			mutex_action(&(philo->res->print), UNLOCK);
+			return (1); //check when call it
+		}
+		mutex_action(&(philo->res->print), UNLOCK);*/
 	}
 	return (0);
 }

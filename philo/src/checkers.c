@@ -1,31 +1,56 @@
 
 #include "../include/philosophers.h"
 
-int all_ate_enough(t_res *res)
+static int all_ate_enough(t_res *res) //static?
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
 	while (i < res->args->num)
 	{
-		if (res->philos[i].meals_eaten < res->args->meals_must_eat)
-			return (0);
+		mutex_action(&(res->print), LOCK);
+		if (res->num_full >= res->args->num) // ==?
+		{
+			res->flag_finish = 1;
+			//printf("------------------ %d FLAG FINISH worked\n", res->flag_finish);
+			message(&res->philos[i], FULL);
+			mutex_action(&(res->print), UNLOCK);
+			return (1);
+		}
+		mutex_action(&(res->print), UNLOCK);
 		i++;
 	}
-	return (1);
+	return (0);
 }
 
-int	death_happened(t_philo	*philo) //or put res and check all philos
+static int	death_happened(t_res *res)
 {
 	size_t	now;
+	size_t	i;
 
-	now = get_time();
-	if (now - philo->last_meal_time >= philo->res->args->time_to_die)
+	i = 0;
+	while (i < res->args->num)
 	{
-		//condition of mutex?
-		//flag to stop everything
-		message(philo, DEATH);
-		return (1);
+		mutex_action(&(res->print), LOCK);
+		now = get_time();
+		if (now - res->philos[i].last_meal_time >= res->args->time_to_die)
+		{
+			res->flag_finish = 1;
+			message(&res->philos[i], DEATH);
+			mutex_action(&(res->print), UNLOCK);
+			return (1);
+		}
+		mutex_action(&(res->print), UNLOCK);
+		i++;
 	}
 	return (0);
+}
+
+void	check_for_finish(t_res *res)
+{
+	while (1)
+	{
+		if (death_happened(res) || all_ate_enough(res))
+			break ;
+	}
 }

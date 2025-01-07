@@ -142,19 +142,18 @@ int	main(int argc, char **argv)
 		clean_resourses(&res);
 		return (1);
 	}
+	check_for_finish(res);
 	if (join_threads(res))
 	{
 		clean_resourses(&res);
 		return (1);
 	}
+	clean_resourses(&res);
 	return (0);
 }
 
 /*
-each philosopher is a thread
-each fork is a mutex (mutual exclusion): variable, that can be locked or unlocked
-	mutex protects object from other processes' access to it,
-	bc only one thread can change the data of the object at a time
-
+-- 1 philosopher
+-- what if the last argument is 0?
 
 */

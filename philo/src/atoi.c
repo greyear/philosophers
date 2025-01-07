@@ -37,7 +37,7 @@ static int	ft_empty_space(char *str)
 	return (0);
 }
 
-int	ft_atoi(char *str, int *number)
+int	ft_atoi(char *str, size_t *number)
 {
 	int		i;
 	long	res;
@@ -60,6 +60,6 @@ int	ft_atoi(char *str, int *number)
 	}
 	if (str[i] != '\0')
 		return (1);
-	*number = (int)res;
+	*number = (size_t)res;
 	return (0);
 }

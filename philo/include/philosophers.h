@@ -77,18 +77,18 @@ typedef struct s_res	t_res;
 
 typedef struct s_args
 {
-	int				num;
-	int				time_to_die;
-	int				time_to_eat;
-	int				time_to_sleep;
-	int				meals_must_eat;
+	size_t			num;
+	size_t			time_to_die;
+	size_t			time_to_eat;
+	size_t			time_to_sleep;
+	size_t			meals_must_eat;
 }	t_args;
 
 typedef struct s_philo
 {
 	int				id;
 	pthread_t		thread;
-	int				meals_eaten;
+	size_t			meals_eaten;
 	size_t			last_meal_time;
 	pthread_mutex_t	*fork_l;
 	pthread_mutex_t	*fork_r;
@@ -100,6 +100,8 @@ typedef struct s_res
 {
 	t_philo			*philos; //maybe **
 	pthread_mutex_t	*forks;
+	size_t			num_full;
+	int				flag_finish;
 	pthread_mutex_t	print;
 	pthread_t		monitor;
 	//struct timeval	tv;
@@ -115,16 +117,18 @@ int		thread_action(pthread_t *thread, void *(*routine)(void *),
 			void *routine_arg, t_thread action);
 int		mutex_action(pthread_mutex_t *mutex, t_mtx action);
 void	*routine(void	*arg);
+void	check_for_finish(t_res *res);
 size_t	get_time(void);
 int		wait_ms(size_t waiting_time);
-void	message(t_philo *philo, t_oper oper);
+int		message(t_philo *philo, t_oper oper);
+int		message_lock(t_philo *philo, t_oper oper);
 
 //Utils
 void	*ft_calloc(size_t count, size_t size);
 
 //Validation
 int		validation(int argc, char **argv, t_res *res);
-int		ft_atoi(char *str, int *number);
+int		ft_atoi(char *str, size_t *number);
 
 //Errors
 int		error_msg(int code);

@@ -14,7 +14,7 @@
 
 int create_threads(t_res *res)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
 	while (i < res->args->num)
@@ -29,7 +29,7 @@ int create_threads(t_res *res)
 
 int	join_threads(t_res *res)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
 	while (i < res->args->num)

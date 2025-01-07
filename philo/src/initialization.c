@@ -33,7 +33,7 @@ static int	allocate_fields(t_res *res)
 
 static int	init_mutex_fields(t_res *res)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
 	while (i < res->args->num)
@@ -50,7 +50,7 @@ static int	init_mutex_fields(t_res *res)
 
 static void	init_philo(t_res *res)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
 	while (i < res->args->num)
@@ -61,6 +61,7 @@ static void	init_philo(t_res *res)
 		res->philos[i].fork_l = &(res->forks[i]);
 		res->philos[i].fork_r = &(res->forks[(i + 1) % res->args->num]);
 		res->philos[i].res = res;
+		res->philos[i].args = res->args;
 		i++;
 	}
 }
@@ -73,6 +74,8 @@ int	init_resourses(t_res *res)
 		return (1);
 	//others
 	res->start = get_time(); //not here?
+	res->num_full = 0;
+	res->flag_finish = 0;
 	init_philo(res);
 	return (0);
 }
