@@ -50,7 +50,7 @@ void	eat(t_philo *philo) //?
 	philo->last_meal_time = get_time();
 	mutex_action(&(philo->res->print), UNLOCK);
 	message_lock(philo, EAT);
-	wait_ms(philo->res->args->time_to_eat);
+	wait_ms(philo->res->args->time_to_eat, philo->res);
 	mutex_action(&(philo->res->print), LOCK);
 	if (philo->meals_eaten == philo->args->meals_must_eat)
 	{
@@ -66,7 +66,7 @@ int	sleep_think(t_philo *philo)
 {
 	//protect everything
 	message_lock(philo, SLEEP);
-	wait_ms(philo->res->args->time_to_sleep); // easier??
+	wait_ms(philo->res->args->time_to_sleep, philo->res); // easier??
 	message_lock(philo, THINK);
 	return (0);
 }
@@ -78,7 +78,7 @@ void	*routine(void	*arg)
 	philo = (t_philo *)arg;
 	
 	if (philo->id % 2 == 0)
-		wait_ms(10); //?
+		wait_ms(10, philo->res); //?
 	while (1)
 	{
 		if (forks(philo) == 1)

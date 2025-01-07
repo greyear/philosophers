@@ -119,7 +119,7 @@ int		mutex_action(pthread_mutex_t *mutex, t_mtx action);
 void	*routine(void	*arg);
 void	check_for_finish(t_res *res);
 size_t	get_time(void);
-int		wait_ms(size_t waiting_time);
+int		wait_ms(size_t waiting_time, t_res *res);
 int		message(t_philo *philo, t_oper oper);
 int		message_lock(t_philo *philo, t_oper oper);
 

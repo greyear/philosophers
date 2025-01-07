@@ -10,7 +10,7 @@ size_t	get_time(void) //long? //tv inside the philo?
 	//sec -> millisec			microces->millisec
 }
 
-int	wait_ms(size_t waiting_time) //what struct to put as an input?
+int	wait_ms(size_t waiting_time, t_res *res) //what struct to put as an input?
 {
 	size_t	start;
 	size_t	end;
@@ -21,13 +21,13 @@ int	wait_ms(size_t waiting_time) //what struct to put as an input?
 	{
 		usleep(400); //protect usleep? //how to choose value?
 		//add logic about other philos' death?
-		/*mutex_action(&(philo->res->print), LOCK);
-		if (philo->res->flag_finish == 1)
+		mutex_action(&(res->print), LOCK);
+		if (res->flag_finish == 1)
 		{
-			mutex_action(&(philo->res->print), UNLOCK);
+			mutex_action(&(res->print), UNLOCK);
 			return (1); //check when call it
 		}
-		mutex_action(&(philo->res->print), UNLOCK);*/
+		mutex_action(&(res->print), UNLOCK);
 	}
 	return (0);
 }
