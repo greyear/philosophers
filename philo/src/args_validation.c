@@ -17,18 +17,20 @@ static int	one_philo(t_res *res)
 	//start from thinking?
 	printf("%d %d has taken a fork\n", 0, 1);
 	printf("%zu %d died\n", res->args->time_to_die, 1);
-	free_fields(res);
-	free(res);
-	exit (0); //IS IT ALLOWED?
+	/*free_fields(res);
+	free(res);*/
+	return (1);
 }
 
+/*
 static int	zeros(t_res *res)
 {
 	error_msg(INV_ARGS);
 	free_fields(res);
 	free(res);
-	exit (0); //IS IT ALLOWED?
+	return (1);
 }
+*/
 
 int	validation(int argc, char **argv, t_res *res)
 {
@@ -43,11 +45,11 @@ int	validation(int argc, char **argv, t_res *res)
 	res->args->meals_must_eat = -1;
 	if (argc == 6 && ft_atoi(argv[5], &(res->args->meals_must_eat)))
 		return (error_msg(INV_ARGS));
-	if (res->args->num == 1)
-		one_philo(res);
 	if (res->args->num == 0 || res->args->time_to_die == 0
 		|| res->args->time_to_eat == 0 || res->args->time_to_sleep == 0
 		|| res->args->meals_must_eat == 0)
-		zeros(res);
+		return (error_msg(INV_ARGS));
+	if (res->args->num == 1)
+		return (one_philo(res));
 	return (0);
 }

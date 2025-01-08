@@ -158,8 +158,8 @@ int	main(int argc, char **argv)
 
 /*
 cases:
-200 130 60 60 should live
-4 2147483648 200 200 sould be invalid args
+200 130 60 60 should live, works from school pc, not from home
+4 2147483648 200 200 should be invalid args
 2147483648 410 200 200 should be invalid args
 2147483647 410 200 200 malloc problem (check if everyone has it?)
 
