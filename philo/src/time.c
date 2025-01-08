@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   time.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: azinchen <azinchen@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/08 12:52:36 by azinchen          #+#    #+#             */
+/*   Updated: 2025/01/08 12:52:38 by azinchen         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../include/philosophers.h"
 
 size_t	get_time(void) //long? //tv inside the philo?
 {
 	struct timeval	tv;
+
 	if (gettimeofday(&tv, NULL) == -1)
 		return (-1); //protect after calling
 	return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));

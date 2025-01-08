@@ -12,11 +12,6 @@
 
 #include "../include/philosophers.h"
 
-#include <pthread.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-
 /*int	mails = 0;
 pthread_mutex_t	mutex;
 
@@ -129,31 +124,46 @@ int	main(int argc, char **argv)
 		return (error_msg(MLLC));
 	if (validation(argc, argv, res))
 	{
-		clean_resourses(&res);
+		clean(&res);
 		return (1);
 	}
 	if (init_resourses(res))
 	{
-		clean_resourses(&res);
+		//clean_destroy(&res);
 		return (1);
 	}
 	if (create_threads(res))
 	{
-		clean_resourses(&res);
+		clean_destroy(&res);
 		return (1);
 	}
 	check_for_finish(res);
+	//printf("before joining\n");
 	if (join_threads(res))
 	{
-		clean_resourses(&res);
+		clean_destroy(&res);
 		return (1);
 	}
-	clean_resourses(&res);
+	//printf("after joining\n");
+	clean_destroy(&res);
 	return (0);
 }
 
 /*
--- 1 philosopher
--- what if the last argument is 0?
+-- 1 philosopher: SHOULD IT START THINKING FIRST???
+-- what to protect?
+-- valgrind --tool=helgrind
+
+*/
+
+/*
+cases:
+200 130 60 60 should live
+4 2147483648 200 200 sould be invalid args
+2147483648 410 200 200 should be invalid args
+2147483647 410 200 200 malloc problem (check if everyone has it?)
+
+2147483 410 200 200 DOESN'T WORK! mutex problem
+20 410 200 200 works but odd numbers don't (less or more than 20, whyyy)
 
 */

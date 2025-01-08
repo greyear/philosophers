@@ -12,7 +12,7 @@
 
 #include "../include/philosophers.h"
 
-int error_msg(int code)
+int	error_msg(int code)
 {
 	if (code == ARGS_NUM)
 		printf("Invalid number of arguments\n"); //stderr??

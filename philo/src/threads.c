@@ -12,7 +12,7 @@
 
 #include "../include/philosophers.h"
 
-int create_threads(t_res *res)
+int	create_threads(t_res *res)
 {
 	size_t	i;
 
@@ -20,7 +20,7 @@ int create_threads(t_res *res)
 	while (i < res->args->num)
 	{
 		if (thread_action(&res->philos[i].thread, &routine,
-			(void *)&res->philos[i], CREATE) != 0)
+				(void *)&res->philos[i], CREATE) != 0)
 			return (1);
 		i++;
 	}
@@ -32,10 +32,11 @@ int	join_threads(t_res *res)
 	size_t	i;
 
 	i = 0;
+	//printf("------------------ %zu args->num\n", res->args->num);
 	while (i < res->args->num)
 	{
 		if (thread_action(&res->philos[i].thread, &routine,
-			(void *)&res->philos[i], JOIN) != 0)
+				(void *)&res->philos[i], JOIN) != 0)
 			return (1);
 		i++;
 	}

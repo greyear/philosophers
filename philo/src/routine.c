@@ -76,7 +76,6 @@ void	*routine(void	*arg)
 	t_philo	*philo;
 
 	philo = (t_philo *)arg;
-	
 	if (philo->id % 2 == 0)
 		wait_ms(10, philo->res); //?
 	while (1)
@@ -87,5 +86,5 @@ void	*routine(void	*arg)
 		if (sleep_think(philo) == 1)
 			break ;
 	}
-	return NULL;
+	return (NULL);
 }

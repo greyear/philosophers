@@ -39,12 +39,17 @@ static int	init_mutex_fields(t_res *res)
 	while (i < res->args->num)
 	{
 		if (mutex_action(&(res->forks[i]), INIT) != 0)
+		{
+			destroy_forks_mutex_fields(res , i); //all the previous ones?
 			return (1);
+		}
 		i++;
 	}
 	if (mutex_action(&(res->print), INIT) != 0)
+	{
+		destroy_forks_mutex_fields(res , res->args->num);
 		return (1);
-	//another mutexes...
+	}
 	return (0);
 }
 
@@ -71,7 +76,10 @@ int	init_resourses(t_res *res)
 	if (allocate_fields(res) != 0)
 		return (1);
 	if (init_mutex_fields(res) != 0)
+	{
+		clean(&res);
 		return (1);
+	}
 	//others
 	res->start = get_time(); //not here?
 	res->num_full = 0;

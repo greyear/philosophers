@@ -46,7 +46,7 @@ int	message(t_philo *philo, t_oper oper)
 	if (oper == DEATH) //other conditions
 		printf("%zu %d died\n", timestamp, philo->id);
 	if (oper == FULL) //other conditions
-		printf("All philosophers ate at least %ld times\n", philo->args->meals_must_eat);
+		printf("All philosophers ate at least %ld times\n",
+			philo->args->meals_must_eat);
 	return (0);
 }
-

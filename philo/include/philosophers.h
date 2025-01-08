@@ -134,6 +134,10 @@ int		ft_atoi(char *str, size_t *number);
 int		error_msg(int code);
 
 //Cleaners
-int		clean_resourses(t_res **res);
+int		clean_destroy(t_res **res);
+int		clean(t_res **res);
+void	free_fields(t_res *res);
+int		destroy_all_mutex_fields(t_res *res , size_t limit);
+int		destroy_forks_mutex_fields(t_res *res , size_t limit);
 
 #endif
