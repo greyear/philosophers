@@ -17,7 +17,7 @@ size_t	get_time(void)
 	struct timeval	tv;
 
 	if (gettimeofday(&tv, NULL) == -1)
-		return (error_msg(GETTIME)); //should I set finish flag equal to 1???
+		return (error_msg(GETTIME));
 	return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
 }
 

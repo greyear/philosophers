@@ -49,14 +49,14 @@ int	forks(t_philo *philo)
 	return (0);
 }
 
-void	eat(t_philo *philo) //?
+void	eat(t_philo *philo)
 {
 	mutex_action(&(philo->res->print), LOCK);
 	philo->meals_eaten++;
 	philo->last_meal_time = get_time();
 	mutex_action(&(philo->res->print), UNLOCK);
-	message_lock(philo, EAT); //? return 1?
-	wait_ms(philo->res->args->time_to_eat, philo->res); //? return 1?
+	message_lock(philo, EAT);
+	wait_ms(philo->res->args->time_to_eat, philo->res);
 	mutex_action(philo->fork_l, UNLOCK);
 	mutex_action(philo->fork_r, UNLOCK);
 	mutex_action(&(philo->res->print), LOCK);
@@ -82,12 +82,12 @@ void	*routine(void *arg)
 
 	philo = (t_philo *)arg;
 	if (philo->id % 2 == 0)
-		wait_ms(50, philo->res); //?
+		wait_ms(50, philo->res);
 	while (1)
 	{
 		if (forks(philo) == 1)
 			break ;
-		eat(philo); //if?
+		eat(philo);
 		if (sleep_think(philo) == 1)
 			break ;
 	}

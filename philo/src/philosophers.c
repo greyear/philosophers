@@ -33,32 +33,3 @@ int	main(int argc, char **argv)
 	clean_destroy(&res);
 	return (0);
 }
-
-/*
--- what to protect?
--- valgrind --tool=helgrind
-
-*/
-
-/*
-cases:
-200 130 60 60 should live, works from school pc, not from home
-4 2147483648 200 200 should be invalid args
-2147483648 410 200 200 should be invalid args
-2147483647 410 200 200 malloc problem (check if everyone has it?)
-
-2147483 410 200 200 DOESN'T WORK! mutex problem
-20 410 200 200 works but odd numbers don't (less or more than 20, whyyy)
-
-
-exit code???? should be 0 every time or not?
-more mutexes for different things?
-*/
-
-/*
-operations which we should protect:
-init
-destroy NE NADO!!!!!!!!!!
-create, join
-
-*/

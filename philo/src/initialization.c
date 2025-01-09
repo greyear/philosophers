@@ -18,6 +18,7 @@ static int	allocate_fields(t_res *res)
 	if (!res->philos)
 	{
 		free(res->args);
+		free(res);
 		return (error_msg(MLLC));
 	}
 	res->forks = ft_calloc(res->args->num, sizeof(pthread_mutex_t));
@@ -25,6 +26,7 @@ static int	allocate_fields(t_res *res)
 	{
 		free(res->args);
 		free(res->philos);
+		free(res);
 		return (error_msg(MLLC));
 	}
 	return (0);

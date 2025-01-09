@@ -16,12 +16,11 @@ int	message_lock(t_philo *philo, t_oper oper)
 {
 	size_t	timestamp;
 
-	//protect mutex_actions
 	mutex_action(&(philo->res->print), LOCK);
 	if (philo->res->flag_finish == 1)
 	{
 		mutex_action(&(philo->res->print), UNLOCK);
-		return (1); //check when call it
+		return (1);
 	}
 	timestamp = get_time() - philo->res->start;
 	if (oper == THINK)
