@@ -27,24 +27,18 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	if (init_resourses(res))
-	{
-		//clean_destroy(&res);
 		return (1);
-	}
 	if (create_threads(res))
 	{
 		clean_destroy(&res);
 		return (1);
 	}
-	printf("--------------------------------------------------------goes till here\n");
 	check_for_finish(res);
-	//printf("before joining\n");
 	if (join_threads(res))
 	{
 		clean_destroy(&res);
 		return (1);
 	}
-	//printf("after joining\n");
 	clean_destroy(&res);
 	return (0);
 }
@@ -66,4 +60,17 @@ cases:
 2147483 410 200 200 DOESN'T WORK! mutex problem
 20 410 200 200 works but odd numbers don't (less or more than 20, whyyy)
 
+
+exit code???? should be 0 every time or not?
+more mutexes for different things?
+*/
+
+/*
+operations which we should protect:
+usleep? or not?
+init, destroy,
+create, join
+
+
+when creation of a thread failed he destroys all the initialized mutexes.....
 */

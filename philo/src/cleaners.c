@@ -14,7 +14,6 @@
 
 void	free_fields(t_res *res)
 {
-	//fields of philos?
 	if (res->philos)
 		free(res->philos);
 	if (res->forks)
@@ -23,7 +22,7 @@ void	free_fields(t_res *res)
 		free(res->args);
 }
 
-int	destroy_all_mutex_fields(t_res *res , size_t limit)
+int	destroy_all_mutex_fields(t_res *res, size_t limit)
 {
 	size_t	i;
 
@@ -32,7 +31,7 @@ int	destroy_all_mutex_fields(t_res *res , size_t limit)
 	{
 		if (mutex_action(&(res->forks[i]), DESTROY) != 0)
 		{
-			printf("--------- mutex which failed to destroy is %zu\n", i);
+			//printf("--------- mutex which failed to destroy is %zu\n", i);
 			//always 0 or 1 and then some more
 			return (1);
 		}
@@ -43,11 +42,10 @@ int	destroy_all_mutex_fields(t_res *res , size_t limit)
 		//printf("--------- mutex which failed to destroy is %zu", i);
 		return (1);
 	}
-	//another mutexes...
 	return (0);
 }
 
-int	destroy_forks_mutex_fields(t_res *res , size_t limit)
+int	destroy_forks_mutex_fields(t_res *res, size_t limit)
 {
 	size_t	i;
 
@@ -72,7 +70,7 @@ int	clean_destroy(t_res **res)
 	free_fields(*res);
 	free(*res);
 	*res = NULL;
-	return (0);
+	return (0); //can I return 1 here as well?
 }
 
 int	clean(t_res **res)

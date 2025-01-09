@@ -15,23 +15,14 @@
 int	thread_action(pthread_t *thread, void *(*routine)(void *),
 	void *routine_arg, t_thread action)
 {
-	int	e;
-
-	//проверка thread?
 	if (action == CREATE)
 	{
-		e = pthread_create(thread, NULL, routine, routine_arg);
-		//printf("------------------ In thread_create\n");
-		if (e != 0)
-		{
-			printf("--------- thread creating error code is %d\n", e);
+		if (pthread_create(thread, NULL, routine, routine_arg) != 0)
 			return (error_msg(THRD_CRT));
-		}
 	}
 	if (action == JOIN)
 	{
-		//printf("------------------ In thread_join\n");
-		if (pthread_join(*thread, NULL) != 0) //extra args(
+		if (pthread_join(*thread, NULL) != 0)
 			return (error_msg(THRD_JN));
 	}
 	return (0);
@@ -39,7 +30,6 @@ int	thread_action(pthread_t *thread, void *(*routine)(void *),
 
 int	mutex_action(pthread_mutex_t *mutex, t_mtx action)
 {
-	//проверка mutex?
 	if (action == INIT)
 	{
 		if (pthread_mutex_init(mutex, NULL) != 0)

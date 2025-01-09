@@ -14,23 +14,10 @@
 
 static int	one_philo(t_res *res)
 {
-	//start from thinking?
 	printf("%d %d has taken a fork\n", 0, 1);
 	printf("%zu %d died\n", res->args->time_to_die, 1);
-	/*free_fields(res);
-	free(res);*/
 	return (1);
 }
-
-/*
-static int	zeros(t_res *res)
-{
-	error_msg(INV_ARGS);
-	free_fields(res);
-	free(res);
-	return (1);
-}
-*/
 
 int	validation(int argc, char **argv, t_res *res)
 {

@@ -14,7 +14,6 @@
 
 static int	allocate_fields(t_res *res)
 {
-	//malloc?
 	res->philos = ft_calloc(res->args->num, sizeof(t_philo));
 	if (!res->philos)
 	{
@@ -40,14 +39,14 @@ static int	init_mutex_fields(t_res *res)
 	{
 		if (mutex_action(&(res->forks[i]), INIT) != 0)
 		{
-			destroy_forks_mutex_fields(res , i); //all the previous ones?
+			destroy_forks_mutex_fields(res, i);
 			return (1);
 		}
 		i++;
 	}
 	if (mutex_action(&(res->print), INIT) != 0)
 	{
-		destroy_forks_mutex_fields(res , res->args->num);
+		destroy_forks_mutex_fields(res, res->args->num);
 		return (1);
 	}
 	return (0);
@@ -62,7 +61,7 @@ static void	init_philo(t_res *res)
 	{
 		res->philos[i].id = i + 1;
 		res->philos[i].meals_eaten = 0;
-		res->philos[i].last_meal_time = res->start; //?
+		res->philos[i].last_meal_time = res->start;
 		res->philos[i].fork_l = &(res->forks[i]);
 		res->philos[i].fork_r = &(res->forks[(i + 1) % res->args->num]);
 		res->philos[i].res = res;
@@ -80,7 +79,6 @@ int	init_resourses(t_res *res)
 		clean(&res);
 		return (1);
 	}
-	//others
 	res->start = get_time(); //not here?
 	res->num_full = 0;
 	res->flag_finish = 0;
