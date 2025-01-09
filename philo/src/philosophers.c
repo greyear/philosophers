@@ -22,29 +22,19 @@ int	main(int argc, char **argv)
 	if (!res)
 		return (error_msg(MLLC));
 	if (validation(argc, argv, res))
-	{
-		clean(&res);
-		return (1);
-	}
+		return (clean(&res));
 	if (init_resourses(res))
 		return (1);
 	if (create_threads(res))
-	{
-		clean_destroy(&res);
-		return (1);
-	}
+		return (clean_destroy(&res));
 	check_for_finish(res);
-	if (join_threads(res))
-	{
-		clean_destroy(&res);
-		return (1);
-	}
+	if (join_threads(res, res->args->num))
+		return (clean_destroy(&res));
 	clean_destroy(&res);
 	return (0);
 }
 
 /*
--- 1 philosopher: SHOULD IT START THINKING FIRST???
 -- what to protect?
 -- valgrind --tool=helgrind
 
@@ -67,10 +57,8 @@ more mutexes for different things?
 
 /*
 operations which we should protect:
-usleep? or not?
-init, destroy,
+init
+destroy NE NADO!!!!!!!!!!
 create, join
 
-
-when creation of a thread failed he destroys all the initialized mutexes.....
 */

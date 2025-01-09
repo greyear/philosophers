@@ -17,7 +17,7 @@ size_t	get_time(void)
 	struct timeval	tv;
 
 	if (gettimeofday(&tv, NULL) == -1)
-		return (-1); //protect after calling
+		return (error_msg(GETTIME)); //should I set finish flag equal to 1???
 	return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
 }
 
@@ -31,12 +31,11 @@ int	wait_ms(size_t waiting_time, t_res *res)
 	while (get_time() < end)
 	{
 		usleep(400);
-		//add logic about other philos' death?
 		mutex_action(&(res->print), LOCK);
 		if (res->flag_finish == 1)
 		{
 			mutex_action(&(res->print), UNLOCK);
-			return (1); //check when call it
+			return (1);
 		}
 		mutex_action(&(res->print), UNLOCK);
 	}

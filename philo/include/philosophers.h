@@ -58,11 +58,11 @@ typedef struct s_res
 //Main
 int		init_resourses(t_res *res);
 int		create_threads(t_res *res);
-int		join_threads(t_res *res);
+int		join_threads(t_res *res, size_t limit);
 int		thread_action(pthread_t *thread, void *(*routine)(void *),
 			void *routine_arg, t_thread action);
 int		mutex_action(pthread_mutex_t *mutex, t_mtx action);
-void	*routine(void	*arg);
+void	*routine(void *arg);
 void	check_for_finish(t_res *res);
 size_t	get_time(void);
 int		wait_ms(size_t waiting_time, t_res *res);

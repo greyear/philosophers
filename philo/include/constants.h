@@ -28,6 +28,7 @@ typedef enum e_err
 	ARGS_NUM,
 	INV_ARGS,
 	MLLC,
+	GETTIME,
 	THRD_CRT,
 	THRD_JN,
 	MTX_INIT,

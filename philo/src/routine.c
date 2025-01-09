@@ -28,50 +28,55 @@ int	forks(t_philo *philo)
 {
 	if (check_before_fork(philo))
 		return (1);
-	//check for stop
 	mutex_action(philo->fork_l, LOCK);
-	message_lock(philo, FORKS); //if returns an error
+	if (message_lock(philo, FORKS) == 1)
+	{
+		mutex_action(philo->fork_l, UNLOCK);
+		return (1);
+	}
 	if (check_before_fork(philo))
 	{
 		mutex_action(philo->fork_l, UNLOCK);
 		return (1);
 	}
-	//solo philosopher
 	mutex_action(philo->fork_r, LOCK);
-	message_lock(philo, FORKS); //if returns an error
+	if (message_lock(philo, FORKS) == 1)
+	{
+		mutex_action(philo->fork_l, UNLOCK);
+		mutex_action(philo->fork_r, UNLOCK);
+		return (1);
+	}
 	return (0);
 }
 
 void	eat(t_philo *philo) //?
 {
-	mutex_action(&(philo->res->print), LOCK); //rename?
+	mutex_action(&(philo->res->print), LOCK);
 	philo->meals_eaten++;
-	//printf("------------------ %d philosopher ate %ld times\n", philo->id, philo->meals_eaten);
 	philo->last_meal_time = get_time();
 	mutex_action(&(philo->res->print), UNLOCK);
-	message_lock(philo, EAT);
-	wait_ms(philo->res->args->time_to_eat, philo->res);
+	message_lock(philo, EAT); //? return 1?
+	wait_ms(philo->res->args->time_to_eat, philo->res); //? return 1?
 	mutex_action(philo->fork_l, UNLOCK);
 	mutex_action(philo->fork_r, UNLOCK);
 	mutex_action(&(philo->res->print), LOCK);
 	if (philo->meals_eaten == philo->args->meals_must_eat)
-	{
 		philo->res->num_full++;
-		//printf("------------------ %ld philosophers are full\n", philo->res->num_full);
-	}
 	mutex_action(&(philo->res->print), UNLOCK);
 }
 
 int	sleep_think(t_philo *philo)
 {
-	//protect everything
-	message_lock(philo, SLEEP);
-	wait_ms(philo->res->args->time_to_sleep, philo->res); // easier??
-	message_lock(philo, THINK);
+	if (message_lock(philo, SLEEP) == 1)
+		return (1);
+	if (wait_ms(philo->res->args->time_to_sleep, philo->res) == 1)
+		return (1);
+	if (message_lock(philo, THINK) == 1)
+		return (1);
 	return (0);
 }
 
-void	*routine(void	*arg)
+void	*routine(void *arg)
 {
 	t_philo	*philo;
 

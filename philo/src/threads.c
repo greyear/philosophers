@@ -21,18 +21,21 @@ int	create_threads(t_res *res)
 	{
 		if (thread_action(&res->philos[i].thread, &routine,
 				(void *)&res->philos[i], CREATE) != 0)
+		{
+			join_threads(res, i);
 			return (1);
+		}
 		i++;
 	}
 	return (0);
 }
 
-int	join_threads(t_res *res)
+int	join_threads(t_res *res, size_t limit)
 {
 	size_t	i;
 
 	i = 0;
-	while (i < res->args->num)
+	while (i < limit)
 	{
 		if (thread_action(&res->philos[i].thread, &routine,
 				(void *)&res->philos[i], JOIN) != 0)

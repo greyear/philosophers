@@ -15,11 +15,13 @@
 int	error_msg(int code)
 {
 	if (code == ARGS_NUM)
-		printf("Invalid number of arguments\n"); //stderr??
+		printf("Invalid number of arguments\n");
 	if (code == INV_ARGS)
 		printf("Invalid arguments\n");
 	if (code == MLLC)
 		printf("Malloc error\n");
+	if (code == GETTIME)
+		printf("Gettimeofday error\n");
 	if (code == THRD_CRT)
 		printf("Pthread_create error\n");
 	if (code == THRD_JN)

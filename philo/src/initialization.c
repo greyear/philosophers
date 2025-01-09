@@ -75,11 +75,8 @@ int	init_resourses(t_res *res)
 	if (allocate_fields(res) != 0)
 		return (1);
 	if (init_mutex_fields(res) != 0)
-	{
-		clean(&res);
-		return (1);
-	}
-	res->start = get_time(); //not here?
+		return (clean(&res));
+	res->start = get_time();
 	res->num_full = 0;
 	res->flag_finish = 0;
 	init_philo(res);
