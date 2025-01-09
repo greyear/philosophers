@@ -15,12 +15,18 @@
 int	thread_action(pthread_t *thread, void *(*routine)(void *),
 	void *routine_arg, t_thread action)
 {
+	int	e;
+
 	//проверка thread?
 	if (action == CREATE)
 	{
+		e = pthread_create(thread, NULL, routine, routine_arg);
 		//printf("------------------ In thread_create\n");
-		if (pthread_create(thread, NULL, routine, routine_arg) != 0)
+		if (e != 0)
+		{
+			printf("--------- thread creating error code is %d\n", e);
 			return (error_msg(THRD_CRT));
+		}
 	}
 	if (action == JOIN)
 	{

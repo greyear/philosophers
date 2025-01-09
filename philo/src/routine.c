@@ -51,6 +51,8 @@ void	eat(t_philo *philo) //?
 	mutex_action(&(philo->res->print), UNLOCK);
 	message_lock(philo, EAT);
 	wait_ms(philo->res->args->time_to_eat, philo->res);
+	mutex_action(philo->fork_l, UNLOCK);
+	mutex_action(philo->fork_r, UNLOCK);
 	mutex_action(&(philo->res->print), LOCK);
 	if (philo->meals_eaten == philo->args->meals_must_eat)
 	{
@@ -58,8 +60,6 @@ void	eat(t_philo *philo) //?
 		//printf("------------------ %ld philosophers are full\n", philo->res->num_full);
 	}
 	mutex_action(&(philo->res->print), UNLOCK);
-	mutex_action(philo->fork_l, UNLOCK);
-	mutex_action(philo->fork_r, UNLOCK);
 }
 
 int	sleep_think(t_philo *philo)
@@ -77,7 +77,7 @@ void	*routine(void	*arg)
 
 	philo = (t_philo *)arg;
 	if (philo->id % 2 == 0)
-		wait_ms(10, philo->res); //?
+		wait_ms(50, philo->res); //?
 	while (1)
 	{
 		if (forks(philo) == 1)

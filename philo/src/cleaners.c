@@ -31,11 +31,18 @@ int	destroy_all_mutex_fields(t_res *res , size_t limit)
 	while (i < limit)
 	{
 		if (mutex_action(&(res->forks[i]), DESTROY) != 0)
+		{
+			printf("--------- mutex which failed to destroy is %zu\n", i);
+			//always 0 or 1 and then some more
 			return (1);
+		}
 		i++;
 	}
 	if (mutex_action(&(res->print), DESTROY) != 0)
+	{
+		//printf("--------- mutex which failed to destroy is %zu", i);
 		return (1);
+	}
 	//another mutexes...
 	return (0);
 }
@@ -48,7 +55,10 @@ int	destroy_forks_mutex_fields(t_res *res , size_t limit)
 	while (i < limit)
 	{
 		if (mutex_action(&(res->forks[i]), DESTROY) != 0)
+		{
+			//printf("--------- mutex which failed to destroy is %zu", i);
 			return (1);
+		}
 		i++;
 	}
 	return (0);
