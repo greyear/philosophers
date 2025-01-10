@@ -37,9 +37,8 @@ int	join_threads(t_res *res, size_t limit)
 	i = 0;
 	while (i < limit)
 	{
-		if (thread_action(&res->philos[i].thread, &routine,
-				(void *)&res->philos[i], JOIN) != 0)
-			return (1);
+		thread_action(&res->philos[i].thread, &routine,
+			(void *)&res->philos[i], JOIN);
 		i++;
 	}
 	return (0);
